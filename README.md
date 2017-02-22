@@ -55,8 +55,8 @@ User joined: Bob
 User joined: Jack
 User joined: Philipp
 User joined: John
-User joined: Bob
-User joined: John
+User left: Bob
+User left: John
 ```
 
 ## How do I get it?
