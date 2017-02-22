@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 /**
  * A minimalistic event.
  * Listeners can be added and removed. When the event is triggered all listeners will be executed
- * with the argument passed to {@link #trigger(T)}. Duplicate listeners are not supported.
+ * with the argument passed to {@link #trigger(Object)}. Duplicate listeners are not supported.
  *
  * @param <T> The argument type to be passed to the listeners.
  * @author Philipp Ploder
@@ -42,7 +42,7 @@ public interface Event<T> {
 
     /**
      * Triggers the event with the argument {@code null}.
-     * The effect should be identical to calling {@link #trigger(T)} with the argument {@code null}.
+     * The effect should be identical to calling {@link #trigger(Object)} with the argument {@code null}.
      */
     default void trigger() {
         trigger(null);
