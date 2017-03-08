@@ -71,7 +71,7 @@ Alternatively you can add it as a Maven dependency. **Note:** The Maven dependen
         <artifactId>easy-events</artifactId>
         <version>v1.0.0</version>
     </dependency>
-</dependency>
+</dependencies>
 ```
 ```xml
 <repositories>
