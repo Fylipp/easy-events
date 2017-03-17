@@ -24,10 +24,6 @@ public class SimpleEvent<T> implements Event<T> {
         }
 
         synchronized (listeners) {
-            if (listeners.contains(listener)) {
-                throw new IllegalArgumentException("The listener is already subscribed");
-            }
-
             listeners.add(listener);
         }
     }
