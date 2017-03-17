@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 /**
  * A minimalistic event.
  * Listeners can be added and removed. When the event is triggered all listeners will be executed
- * with the argument passed to {@link #trigger(Object)}. Duplicate listeners are not supported.
+ * with the argument passed to {@link #trigger(Object)}. Duplicate listeners are supported.
  *
  * @param <T> The argument type to be passed to the listeners.
  * @author Philipp Ploder
@@ -15,16 +15,16 @@ import java.util.function.Consumer;
 public interface Event<T> {
 
     /**
-     * Subscribed a listener to this event.
+     * Subscribes a listener to this event.
+     * Duplicate listeners are supported.
      *
      * @param listener The listener to add.
-     * @throws NullPointerException     If the given reference is {@code null}.
-     * @throws IllegalArgumentException If the given listener is already subscribed.
+     * @throws NullPointerException If the given reference is {@code null}.
      */
-    void addListener(Consumer<T> listener) throws NullPointerException, IllegalArgumentException;
+    void addListener(Consumer<T> listener) throws NullPointerException;
 
     /**
-     * Unsubscribes the given listener from this event if it is subscribed.
+     * Unsubscribes the first occurrence of the given listener from this event.
      * If the listener is not found nothing happens.
      *
      * @param listener The listener to remove.
