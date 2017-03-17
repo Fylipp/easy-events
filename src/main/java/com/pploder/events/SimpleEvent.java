@@ -34,7 +34,9 @@ public class SimpleEvent<T> implements Event<T> {
             throw new NullPointerException("The listener to remove may not be null");
         }
 
-        listeners.remove(listener);
+        synchronized (listeners) {
+            listeners.remove(listener);
+        }
     }
 
     @Override
