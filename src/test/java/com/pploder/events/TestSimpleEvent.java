@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
@@ -68,13 +69,18 @@ public class TestSimpleEvent {
         new SimpleEvent<>().addListener(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testDuplicateListener() {
         Event<Void> event = new SimpleEvent<>();
-        Consumer<Void> listener = arg -> {};
+        AtomicInteger counter = new AtomicInteger();
+        Consumer<Void> listener = arg -> counter.incrementAndGet();
 
         event.addListener(listener);
         event.addListener(listener);
+
+        event.trigger();
+
+        Assert.assertEquals(2, counter.get());
     }
 
     @Test(expected = NullPointerException.class)
