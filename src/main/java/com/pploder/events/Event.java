@@ -39,7 +39,7 @@ public interface Event<T> {
      * @param listener The listener to remove.
      * @throws NullPointerException If the given reference is {@code null}.
      */
-    void removeAllOccurences(Consumer<T> listener) throws NullPointerException;
+    void removeAllOccurrences(Consumer<T> listener) throws NullPointerException;
 
     /**
      * Triggers the event.
