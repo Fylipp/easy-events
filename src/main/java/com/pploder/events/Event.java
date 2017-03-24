@@ -1,5 +1,6 @@
 package com.pploder.events;
 
+import java.util.Collection;
 import java.util.function.Consumer;
 
 /**
@@ -22,6 +23,24 @@ public interface Event<T> {
      * @throws NullPointerException If the given reference is {@code null}.
      */
     void addListener(Consumer<T> listener) throws NullPointerException;
+
+    /**
+     * Subscribes all given listeners to this event.
+     * Duplicate listeners are supported.
+     *
+     * @param listeners The listeners to add.
+     * @throws NullPointerException If the given array or any of its contained references is {@code null}.
+     */
+    void addAllListeners(Consumer<T>... listeners) throws NullPointerException;
+
+    /**
+     * Subscribes all given listeners to this event.
+     * Duplicate listeners are supported.
+     *
+     * @param listeners The listeners to add.
+     * @throws NullPointerException If the given collection or any of its contained references is {@code null}.
+     */
+    void addAllListeners(Collection<Consumer<T>> listeners) throws NullPointerException;
 
     /**
      * Unsubscribes the first occurrence of the given listener from this event.
