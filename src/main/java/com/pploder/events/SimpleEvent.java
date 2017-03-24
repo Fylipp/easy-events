@@ -40,6 +40,17 @@ public class SimpleEvent<T> implements Event<T> {
     }
 
     @Override
+    public void removeAllOccurrences(Consumer<T> listener) throws NullPointerException {
+        if (listener == null) {
+            throw new NullPointerException("The listener to remove may not be null");
+        }
+
+        synchronized (listeners) {
+            listeners.removeIf(listener::equals);
+        }
+    }
+
+    @Override
     public void trigger(T t) {
         listeners.forEach(listener -> listener.accept(t));
     }
