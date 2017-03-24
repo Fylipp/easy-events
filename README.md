@@ -69,7 +69,7 @@ Alternatively you can add it as a Maven dependency. **Note:** The Maven dependen
     <dependency>
         <groupId>com.github.Fylipp</groupId>
         <artifactId>easy-events</artifactId>
-        <version>v1.0.0</version>
+        <version>v1.1.0</version>
     </dependency>
 </dependencies>
 ```
