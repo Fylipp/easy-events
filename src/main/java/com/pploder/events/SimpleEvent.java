@@ -1,6 +1,9 @@
 package com.pploder.events;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 
@@ -25,6 +28,32 @@ public class SimpleEvent<T> implements Event<T> {
 
         synchronized (listeners) {
             listeners.add(listener);
+        }
+    }
+
+    @Override
+    public void addAllListeners(Consumer<T>... listeners) throws NullPointerException {
+        if (listeners == null) {
+            throw new NullPointerException("The listeners array is a null-reference");
+        }
+
+        addAllListeners(Arrays.asList(listeners));
+    }
+
+    @Override
+    public void addAllListeners(Collection<Consumer<T>> listeners) throws NullPointerException {
+        if (listeners == null) {
+            throw new NullPointerException("The listeners collection is a null-reference");
+        }
+
+        if (!listeners.isEmpty()) {
+            if (listeners.stream().anyMatch(Objects::isNull)) {
+                throw new NullPointerException("At least one of the given listeners is a null-reference");
+            }
+
+            synchronized (this.listeners) {
+                this.listeners.addAll(listeners);
+            }
         }
     }
 
