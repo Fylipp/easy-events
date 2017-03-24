@@ -33,6 +33,15 @@ public interface Event<T> {
     void removeListener(Consumer<T> listener) throws NullPointerException;
 
     /**
+     * Unsubscribes all occurrences of the given listener from this event.
+     * If the listener is not found nothing happens.
+     *
+     * @param listener The listener to remove.
+     * @throws NullPointerException If the given reference is {@code null}.
+     */
+    void removeAllOccurences(Consumer<T> listener) throws NullPointerException;
+
+    /**
      * Triggers the event.
      * The order of execution is implementation dependant.
      *
